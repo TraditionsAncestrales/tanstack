@@ -40,7 +40,7 @@ export const zPlacesNames = select(zPlacesRecord, ["name"]).array();
 // MIDDLEWARES *****************************************************************************************************************************
 const withHelpers = createMiddleware().server(async ({ next }) => {
   const pocketbase = getPocketbase();
-  return next({ context: { ...helpersFrom({ pocketbase, cache: "1d" }) } });
+  return next({ context: { ...helpersFrom({ pocketbase, cache: import.meta.env.DEV ? "1d" : undefined }) } });
 });
 
 // CONFIG **********************************************************************************************************************************
