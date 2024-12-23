@@ -5,11 +5,11 @@ import Icons from "unplugin-icons/vite";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
+  server: {
+    preset: "vercel",
+  },
   vite: {
     envPrefix: ["PUBLIC_"],
-    server: {
-      preset: "vercel",
-    },
     plugins: [
       viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
       FontaineTransform.vite({
