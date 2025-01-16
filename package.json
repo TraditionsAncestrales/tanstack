@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@11ty/eleventy-fetch": "^5.0.2",
     "@fontsource-variable/raleway": "^5.1.1",
     "@formkit/tempo": "^0.1.2",
     "@hookform/resolvers": "^3.10.0",

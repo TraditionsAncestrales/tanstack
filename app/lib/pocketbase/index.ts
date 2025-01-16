@@ -1,3 +1,5 @@
+// @ts-ignore
+import Fetch from "@11ty/eleventy-fetch";
 import { createMiddleware, createServerFn } from "@tanstack/start";
 import { z } from "zod";
 import { helpersFrom, select } from "zod-pocketbase";
@@ -40,7 +42,21 @@ export const zPlacesNames = select(zPlacesRecord, ["name"]).array();
 // MIDDLEWARES *****************************************************************************************************************************
 const withHelpers = createMiddleware().server(async ({ next }) => {
   const pocketbase = getPocketbase();
-  return next({ context: { ...helpersFrom({ pocketbase, cache: import.meta.env.DEV ? "1d" : undefined }) } });
+  return next({
+    context: {
+      ...helpersFrom({
+        pocketbase,
+        ...(import.meta.env.DEV
+          ? {
+              fetch: async (url, fetchOptions) => {
+                const { body, ...init } = await Fetch(url, { fetchOptions, returnType: "response", type: "json" });
+                return new Response(JSON.stringify(body), init);
+              },
+            }
+          : {}),
+      }),
+    },
+  });
 });
 
 // CONFIG **********************************************************************************************************************************

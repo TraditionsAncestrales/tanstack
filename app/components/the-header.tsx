@@ -54,7 +54,7 @@ export function TheHeader({ className }: TheHeaderProps) {
     >
       <nav className="container mx-auto flex items-center justify-between sm:justify-center sm:group-data-scrolled:justify-between">
         <Link to="/" aria-label="Retour à l'accueil" className="flex items-center gap-1 group-data-scrolled:flex sm:hidden">
-          <LogoIcon className="h-12 w-12 fill-neutral-800 text-primary hover:text-primary-400" />
+          {/* <LogoIcon className="h-12 w-12 fill-neutral-800 text-primary hover:text-primary-400" /> */}
           <hgroup className="font-heading uppercase">
             <h3 className="text-sm leading-none text-neutral-800">Traditions</h3>
             <h4 className="text-xs leading-none text-neutral-500">Ancestrales</h4>
